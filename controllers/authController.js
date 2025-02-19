@@ -40,7 +40,7 @@ exports.login=async(req,res)=>{
         const actualPswd = await bcrypt.compare(password, existingUser.password);
         if (actualPswd) {
             // token generation
-            const token = jwt.sign({ userId: existingUser._id }, process.env.JWT_SECRET);
+            const token = jwt.sign({ userId: existingUser._id }, process.env.jwtKey);
             console.log(token);
             
             res.status(200).json({ existingUser, token });
